@@ -1,0 +1,9 @@
+name: Ross
+defence-length: 7
+referee-host: http://referee:9090
+player-port: 8084
+pubsub:
+  store:
+    redis:
+      host: redis
+      port: 6379

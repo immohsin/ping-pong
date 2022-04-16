@@ -1,0 +1,103 @@
+version: "2.4"
+services:
+    redis:
+        image: "redis:5.0"
+        command: redis-server
+        restart: on-failure
+        ports:
+         - 6379:6379
+    referee:
+        build: 
+            context: $PWD
+            dockerfile: $PWD/docker/referee.dockerfile
+        ports:
+            - 9090:9090
+        depends_on:
+            - redis
+        environment: 
+            CONFIG_PATH: /ping-pong/config/referee-static.yml
+        volumes:
+            - $PWD/report:/ping-pong/report/
+        command: "python -m flask run --host=0.0.0.0 --port=9090"
+    player1:
+        build: 
+            context: $PWD
+            dockerfile: $PWD/docker/player.dockerfile
+        ports:
+            - 8081:8081
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player1-static.yml
+        image: "player_image"
+        depends_on:
+            - referee
+            - redis
+        command: "python -m flask run --host=0.0.0.0 --port=8081"
+    player2:
+        ports:
+            - 8082:8082
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player2-static.yml
+        image: "player_image"
+        depends_on:
+            - referee
+            - redis
+        command: "python -m flask run --host=0.0.0.0 --port=8082"
+    player3:
+        depends_on:
+            - referee
+        ports:
+            - 8083:8083
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player3-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8083"
+    player4:
+        depends_on:
+            - referee
+            - redis
+        ports:
+            - 8084:8084
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player4-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8084"
+    player5:
+        depends_on:
+            - referee
+            - redis
+        ports:
+            - 8085:8085
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player5-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8085"
+    player6:
+        depends_on:
+            - referee
+            - redis
+        ports:
+            - 8086:8086
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player6-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8086"
+    player7:
+        depends_on:
+            - referee
+            - redis
+        ports:
+            - 8087:8087
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player7-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8087"
+    player8:
+        depends_on:
+            - referee
+            - redis
+        ports:
+            - 8088:8088
+        image: "player_image"
+        environment: 
+            CONFIG_PATH: /ping-pong/config/player8-static.yml
+        command: "python -m flask run --host=0.0.0.0 --port=8088"

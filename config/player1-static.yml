@@ -1,0 +1,9 @@
+name: Joey
+defence-length: 8
+referee-host: http://referee:9090
+player-port: 8081
+pubsub:
+  store:
+    redis:
+      host: redis
+      port: 6379

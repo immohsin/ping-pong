@@ -1,0 +1,23 @@
+players:
+  Joey: http://localhost:8081
+  Gunther: http://localhost:8082
+  Russel: http://localhost:8083
+  Ross: http://localhost:8084
+  Monica: http://localhost:8085
+  Rachel: http://localhost:8086
+  Phoebe: http://localhost:8087
+  Chandler: http://localhost:8088
+
+
+winning-score: 5
+referee-port: 9090
+
+pubsub:
+  store:
+    redis:
+      host: redis
+      port: 6379
+
+game-state:
+  store:
+    memory: null

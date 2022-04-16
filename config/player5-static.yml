@@ -1,0 +1,9 @@
+name: Monica
+defence-length: 6
+referee-host: http://referee:9090
+player-port: 8085
+pubsub:
+  store:
+    redis:
+      host: redis
+      port: 6379
